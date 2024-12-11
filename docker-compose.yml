@@ -1,13 +1,15 @@
 version: '3'
 
 
-# docker run --rm -p 15672:15672 rabbitmq:3.10.7-management
 services:
   rabbitmq:
     image: 'rabbitmq:3.10.7-management'
+    # Прокидываем на localhost порты
     ports:
-      - '5672:5672'   # The standard AMQP protocol port Порт для взаимодействия RabbitMQ сервисов Прокидываем на localhost порты
-      - '15672:15672' # HTTP management UI Порт для WebGUI настройки
+      # Порт для взаимодействия RabbitMQ сервисов
+      - '5672:5672'   # The standard AMQP protocol port
+      # Порт для WebGUI настройки
+      - '15672:15672' # HTTP management UI
     networks:
       - demo
 

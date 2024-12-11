@@ -21,6 +21,7 @@ def main():
     channel.exchange_declare(exchange="test_exchange",
                          exchange_type=ExchangeType.direct,
                          durable=True)
+    # durable=True - сохранение на диск очереди RabitMQ для дальнейшей передачи в случае возобновлении работы
     channel.queue_declare(queue='standard',
                         durable=True)
     channel.queue_bind(queue='standard', exchange='test_exchange', routing_key='standard_key')
