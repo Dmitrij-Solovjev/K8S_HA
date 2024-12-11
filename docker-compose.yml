@@ -1,0 +1,31 @@
+version: '3'
+
+
+# docker run --rm -p 15672:15672 rabbitmq:3.10.7-management
+services:
+  rabbitmq:
+    image: 'rabbitmq:3.10.7-management'
+    ports:
+      - '5672:5672'   # The standard AMQP protocol port Порт для взаимодействия RabbitMQ сервисов Прокидываем на localhost порты
+      - '15672:15672' # HTTP management UI Порт для WebGUI настройки
+    networks:
+      - demo
+
+  consumer:
+    # Папка из которой собираем
+    build: consumer
+    environment:
+      # URL для подключения
+      AMQP_URL: 'amqp://guest:guest@rabbitmq?connection_attempts=5&retry_delay=5'
+    networks:
+      - demo
+
+  publisher:
+    build: publisher
+    environment:
+      AMQP_URL: 'amqp://guest:guest@rabbitmq?connection_attempts=5&retry_delay=5'
+    networks:
+      - demo
+
+networks:
+  demo: {}
