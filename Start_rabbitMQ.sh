@@ -11,7 +11,7 @@
 #sleep 1
 
 # Последний тест
-kubectl delete all --all
+#kubectl delete all --all
 
 kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
 sleep 1
