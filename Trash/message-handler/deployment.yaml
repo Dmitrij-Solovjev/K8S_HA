@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+
+kind: Deployment
+metadata:
+    name: message-handler-deploy
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: message-handler-id-name
+            tier: backend
+            track: stable
+    template:
+        metadata:
+            labels:
+                app: message-handler-id-name
+                tier: backend
+                track: stable
+        spec:
+            containers:
+            - name: message-handler-container
+              imagePullPolicy: Never
+              image: message-handler-image:latest
+              ports:
+              - name: http
+                containerPort: 80

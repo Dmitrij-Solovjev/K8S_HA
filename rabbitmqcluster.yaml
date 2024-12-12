@@ -1,0 +1,41 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+    name: production-rabbitmqcluster
+spec:
+    replicas: 3
+    resources:
+        requests:
+            cpu: 500m
+            memory: 1Gi
+        limits:
+            cpu: 1
+            memory: 2Gi
+    rabbitmq:
+        additionalConfig: |
+                log.console.level = info
+                channel_max = 1700
+                default_user = guest
+                default_pass = guest
+                default_user_tags.administrator = true
+    service:
+        type: LoadBalancer
+        #spec:
+        #    ports:
+        #    - port: 15672
+        #      targetPort: 15672
+        #      name: 'http'
+        #      protocol: TCP
+        #    - port: 5672
+        #      targetPort: 5672
+        #      name: '5672'
+        #      protocol: TCP
+#    override:
+#        service:
+#            spec:
+#                ports:
+#                - name: additional-port # adds an additional port on the service
+#                  nodePort: 12342
+#                  protocol: TCP
+#                  port: 12341
+#                  targetPort: 12343

@@ -1,0 +1,14 @@
+apiVersion: v1
+
+kind: Service
+metadata:
+    name: message-handler-service
+spec:
+    selector:
+        app: message-handler-id-name
+        tier: backend
+    ports:
+    - nodePort: 30475
+      port: 80
+      targetPort: http
+
