@@ -39,3 +39,13 @@ spec:
 #                  protocol: TCP
 #                  port: 12341
 #                  targetPort: 12343
+#
+#    override:
+#        service:
+#            spec:
+#                ports:
+#                - name: management # adds an additional port on the service
+#                  nodePort: 30666
+#                  protocol: TCP
+#                  port: 15672
+#                  targetPort: 15672

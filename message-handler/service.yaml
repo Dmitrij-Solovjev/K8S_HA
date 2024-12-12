@@ -8,7 +8,6 @@ spec:
         app: message-handler-id-name
         tier: backend
     ports:
-    - nodePort: 30475
-      port: 80
-      targetPort: TCP
+    - port: 80
+      targetPort: http
 
